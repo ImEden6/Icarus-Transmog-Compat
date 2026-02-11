@@ -1,0 +1,14 @@
+{
+    "required": true,
+    "package": "net.mervyn.icaruswings_transmog_compat.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "minVersion": "0.8",
+    "mixins": [
+    ],
+    "client": [
+        "IcarusClientMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

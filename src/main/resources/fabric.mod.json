@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "icaruswings_transmog_compat",
+	"version": "${version}",
+	"name": "Icarus-Transmog Compat",
+	"description": "Makes Icarus wings respect Transmog appearances. When you transmog your wings, they will render with the transmogged appearance.",
+	"authors": [
+		"Mervyn"
+	],
+	"contact": {
+		"sources": "https://github.com/Mervyn/Icarus-Transmog-Compat"
+	},
+	"license": "MIT",
+	"icon": "assets/icaruswings_transmog_compat/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"net.mervyn.icaruswings_transmog_compat.IcarusWingsTransmogCompat"
+		]
+	},
+	"mixins": [
+		"icaruswings_transmog_compat.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${loader_version}",
+		"minecraft": "~${minecraft_version}",
+		"java": ">=17",
+		"icarus": "*",
+		"transmog": "*"
+	}
+}
