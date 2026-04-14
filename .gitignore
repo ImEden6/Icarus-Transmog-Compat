@@ -36,7 +36,6 @@ crash-reports/
 *.log
 *.ctxt
 .mtj.tmp/
-*.jar
 *.war
 *.nar
 *.ear
@@ -48,5 +47,5 @@ crash-reports/
 hs_err_pid*
 
 # Others
-references/
+reference/
 .agent/
