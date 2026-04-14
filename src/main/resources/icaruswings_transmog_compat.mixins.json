@@ -1,12 +1,14 @@
 {
     "required": true,
     "package": "net.mervyn.icaruswings_transmog_compat.mixin",
+    "plugin": "net.mervyn.icaruswings_transmog_compat.mixin.IcarusTransmogCompatMixinPlugin",
     "compatibilityLevel": "JAVA_17",
     "minVersion": "0.8",
     "mixins": [
     ],
     "client": [
-        "IcarusClientMixin"
+        "IcarusClientMixin",
+        "EstrogenClientMixin"
     ],
     "injectors": {
         "defaultRequire": 1

@@ -4,6 +4,7 @@ import com.hidoni.transmog.TransmogUtils;
 import dev.cammiescorner.icarus.client.IcarusClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,14 +24,21 @@ public class IcarusClientMixin {
      * actual equipped wing.
      */
     @Inject(method = "getWingsForRendering", at = @At("RETURN"), cancellable = true, remap = false)
-    private static void applyTransmogAppearance(LivingEntity entity, CallbackInfoReturnable<ItemStack> cir) {
+    private static void icarustransmogcompat$applyTransmogAppearance(LivingEntity entity, CallbackInfoReturnable<ItemStack> cir) {
         ItemStack originalWings = cir.getReturnValue();
         if (originalWings != null && !originalWings.isEmpty()) {
             // Use Transmog's utility to get the appearance stack (or original if not
             // transmogged)
             ItemStack appearanceStack = TransmogUtils.getAppearanceStackOrOriginal(originalWings);
             if (appearanceStack != originalWings) {
-                cir.setReturnValue(appearanceStack);
+                // If the appearance is not an Icarus wing, we return EMPTY to make Icarus skip rendering.
+                // This allows other mod-specific renderers (like Estrogen's MothElytraLayer)
+                // to take over without Icarus drawing its own wing model.
+                if (!Registries.ITEM.getId(appearanceStack.getItem()).getNamespace().equals("icarus")) {
+                    cir.setReturnValue(ItemStack.EMPTY);
+                } else {
+                    cir.setReturnValue(appearanceStack);
+                }
             }
         }
     }

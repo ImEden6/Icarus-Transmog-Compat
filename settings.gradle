@@ -8,3 +8,5 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
+
+rootProject.name = 'icaruswings_transmog_compat'
